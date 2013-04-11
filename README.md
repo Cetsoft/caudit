@@ -59,8 +59,8 @@ Moreover, one may want to monitor what is the value of something for every inter
 be accomplished by giving a provider to the quantity as follows.
 ```java
   doubleQuantity.setProvider(new AuditProvider() {
-    public void updateAudit() {
-		  doubleQuantity.set(Math.random());
-		}
-	});
+    public void updateAudit(){
+      doubleQuantity.set(Math.random());
+    }
+  });
 ```
