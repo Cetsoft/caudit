@@ -80,3 +80,35 @@ be accomplished by giving a provider to the quantity as follows.
     }
   });
 ```
+Sometimes, you may want to measure time for one event and remove it after measurement, this can
+done by AuditRemovalListener. We can set shouldReset to false in order to avoid from resetting it.
+```java
+  private final static int EVENT_ID = Audits.mapAudit("example.event");
+  public void startEvent(){
+    Stopwatch stopwatch = Audits.getBasicStopwatch(EVENT_ID);
+    stopwatch.setShouldReset(false);
+    stopwatch.setRemovalListener(new AuditRemovalListener() {
+  		public void onRemoval(AuditEvent auditEvent) {
+				System.out.println(auditEvent);
+			}
+		});
+  }
+  public void stopEvent(){
+    Stopwatch stopwatch = Audits.getBasicStopwatch(EVENT_ID);
+    Audits.unmapAudit(stopwatch);
+  }
+```
+###Configuration
+Caudit configuration is simple, you just give period of caudit and observers for audit events.
+Here is an example configuration.
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<caudit>
+  <period>1000</period>
+    <observers>
+      <observer class="com.cetsoft.caudit.observer.ConsoleObserver" />
+      <!-- MyObserver is just an example -->
+      <observer class="com.cetsoft.caudit.observer.MyObserver" />
+	</observers>
+</caudit>
+```
