@@ -32,7 +32,7 @@ import com.cetsoft.caudit.common.AuditStore;
 public class ScheduledAuditObservable extends AbstractAuditObservable implements Runnable {
 
 	/** The period. */
-	private int period;
+	private long period;
 	
 	/** The time unit. */
 	private TimeUnit timeUnit;
@@ -47,7 +47,7 @@ public class ScheduledAuditObservable extends AbstractAuditObservable implements
 	 * @param period the period
 	 * @param timeUnit the time unit
 	 */
-	public ScheduledAuditObservable(AuditStore auditStore, int period, TimeUnit timeUnit) {
+	public ScheduledAuditObservable(AuditStore auditStore, long period, TimeUnit timeUnit) {
 		super(auditStore);
 		this.period = period;
 		this.timeUnit = timeUnit;

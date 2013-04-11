@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<caudit>
+	<period>1000</period>
+	<observers>
+		<observer class="com.cetsoft.caudit.observer.ConsoleObserver" />
+	</observers>
+</caudit>
