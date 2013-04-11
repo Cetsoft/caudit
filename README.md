@@ -33,3 +33,82 @@ In this example, we try to monitor how many items we retrieve from database.
 ```
 If we use default configuration we will see an output on the console as follows.
 > example.noOfRetrievedItems : Quantity[2631]
+
+###Counting Stopwatch Example
+In this example, we try to monitor how much time it takes to do specific number of operations. 
+```java
+  private final static int COUNTING_STOPWATCH_ID = Audits.mapAudit("example.countingStopwatch");
+  
+  public void tryOut(){
+    final CountingStopwatch stopwatch = Audits.getCountingStopwatch(COUNTING_STOPWATCH_ID);
+    stopwatch.start(0);
+    int size = doSomeWork();
+    stopwatch.stop(size);
+  }
+```
+If we use default configuration we will see an output on the console as follows.
+> example.countingStopwatch : Count[23] ElapsedTime[5679]
+
+AuditProvider is called for each time interval. Thus, we can see updated output on the console.
+###Complex Audit Example
+In this example, we try to monitor specific events that have many attributes.
+```java
+  private final static int TOTAL_CHANGES_ID = Audits.mapAudit("example.totalChanges");
+  
+  public void tryOut(){
+    final ComplexAudit audit = Audits.getComplexAudit(TOTAL_CHANGES_ID);
+    audit.put("width",3);
+    audit.put("length",5);
+    audit.oput("number",11);
+  }
+```
+If we use default configuration we will see an output on the console as follows.
+> example.totalChanges : width[3] length[5] number[11]
+
+##Specific Scenarios
+In default configuration we print those audits to the console every 10 seconds. You can reset
+your stopwatches or quantities for the new interval by shouldReset method.
+```java
+  stopwatch.shouldReset(true);
+```
+Moreover, one may want to monitor what is the value of something for every interval. It can
+be accomplished by giving a provider to the quantity as follows.
+```java
+  doubleQuantity.setProvider(new AuditProvider() {
+    public void updateAudit(){
+      doubleQuantity.set(Math.random());
+    }
+  });
+```
+Sometimes, you may want to measure time for one event and remove it after measurement, this can
+done by AuditRemovalListener. We can set shouldReset to false in order to avoid from resetting it.
+```java
+  private final static int EVENT_ID = Audits.mapAudit("example.event");
+  public void startEvent(){
+    Stopwatch stopwatch = Audits.getBasicStopwatch(EVENT_ID);
+    stopwatch.setShouldReset(false);
+    stopwatch.setRemovalListener(new AuditRemovalListener() {
+  		public void onRemoval(AuditEvent auditEvent) {
+				System.out.println(auditEvent);
+			}
+		});
+  }
+  public void stopEvent(){
+    Stopwatch stopwatch = Audits.getBasicStopwatch(EVENT_ID);
+    Audits.unmapAudit(stopwatch);
+  }
+```
+###Configuration
+Caudit configuration is simple, you just give period of caudit and observers for audit events.
+Here is an example configuration.
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<caudit>
+  <period>1000</period>
+    <observers>
+      <observer class="com.cetsoft.caudit.observer.ConsoleObserver" />
+      <!-- MyObserver is just an example -->
+      <observer class="com.cetsoft.caudit.observer.MyObserver" />
+	</observers>
+</caudit>
+```
