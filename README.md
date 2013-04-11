@@ -64,3 +64,18 @@ be accomplished by giving a provider to the quantity as follows.
     }
   });
 ```
+AuditProvider is called for each time interval. Thus, we can see updated output on the console.
+###Complex Audit Example
+In this example, we try to monitor specific events that have many attributes.
+```java
+  private final static int TOTAL_CHANGES_ID = Audits.mapAudit("example.totalChanges");
+  
+  public void tryOut(){
+    final ComplexAudit audit = Audits.getComplexAudit(TOTAL_CHANGES_ID);
+    audit.put("width",3);
+    audit.put("length",5);
+    audit.oput("number",11);
+  }
+```
+If we use default configuration we will see an output on the console as follows.
+> example.noOfRetrievedItems : width[3] length[5] number[11]
