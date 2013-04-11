@@ -33,3 +33,18 @@ In this example, we try to monitor how many items we retrieve from database.
 ```
 If we use default configuration we will see an output on the console as follows.
 > example.noOfRetrievedItems : Quantity[2631]
+
+###Counting Stopwatch Example
+In this example, we try to monitor how much time it takes to do specific number of operations. 
+```java
+  private final static int COUNTING_STOPWATCH_ID = Audits.mapAudit("example.countingStopwatch");
+  
+  public void tryOut(){
+    final CountingStopwatch stopwatch = Audits.getCountingStopwatch(COUNTING_STOPWATCH_ID);
+    stopwatch.start(0);
+    int size = doSomeWork();
+    stopwatch.stop(size);
+  }
+```
+If we use default configuration we will see an output on the console as follows.
+> example.basicStopwatch : Count[23] ElapsedTime[5679]
