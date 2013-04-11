@@ -60,7 +60,7 @@ In this example, we try to monitor specific events that have many attributes.
     final ComplexAudit audit = Audits.getComplexAudit(TOTAL_CHANGES_ID);
     audit.put("width",3);
     audit.put("length",5);
-    audit.oput("number",11);
+    audit.put("number",11);
   }
 ```
 If we use default configuration we will see an output on the console as follows.
