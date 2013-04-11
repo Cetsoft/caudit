@@ -78,4 +78,4 @@ In this example, we try to monitor specific events that have many attributes.
   }
 ```
 If we use default configuration we will see an output on the console as follows.
-> example.noOfRetrievedItems : width[3] length[5] number[11]
+> example.totalChanges : width[3] length[5] number[11]
