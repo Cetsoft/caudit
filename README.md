@@ -100,7 +100,7 @@ done by AuditRemovalListener. We can set shouldReset to false in order to avoid 
 ```
 ###Configuration
 Caudit configuration is simple, you just give period of caudit and observers for audit events.
-Here is an example configuration.
+Here is an example configuration. 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <caudit>
@@ -112,3 +112,7 @@ Here is an example configuration.
 	</observers>
 </caudit>
 ```
+Caudit tries to find caudit.xml in classpath or you can give
+its path by -Dcaudit.configuration.filePath=yourpath, otherwise, it loads the default configuration.
+###Licence
+Caudit uses GNU Licence.
