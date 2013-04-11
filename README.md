@@ -92,9 +92,11 @@ done by AuditRemovalListener. We can set shouldReset to false in order to avoid 
 				System.out.println(auditEvent);
 			}
 		});
+    stopwatch.start();
   }
   public void stopEvent(){
     Stopwatch stopwatch = Audits.getBasicStopwatch(EVENT_ID);
+    stopwatch.stop();
     Audits.unmapAudit(stopwatch);
   }
 ```
