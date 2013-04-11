@@ -49,21 +49,6 @@ In this example, we try to monitor how much time it takes to do specific number 
 If we use default configuration we will see an output on the console as follows.
 > example.countingStopwatch : Count[23] ElapsedTime[5679]
 
-##Specific Scenarios
-In default configuration we print those audits to the console every 10 seconds. You can reset
-your stopwatches or quantities for the new interval by shouldReset method.
-```java
-  stopwatch.shouldReset(true);
-```
-Moreover, one may want to monitor what is the value of something for every interval. It can
-be accomplished by giving a provider to the quantity as follows.
-```java
-  doubleQuantity.setProvider(new AuditProvider() {
-    public void updateAudit(){
-      doubleQuantity.set(Math.random());
-    }
-  });
-```
 AuditProvider is called for each time interval. Thus, we can see updated output on the console.
 ###Complex Audit Example
 In this example, we try to monitor specific events that have many attributes.
@@ -79,3 +64,19 @@ In this example, we try to monitor specific events that have many attributes.
 ```
 If we use default configuration we will see an output on the console as follows.
 > example.totalChanges : width[3] length[5] number[11]
+
+##Specific Scenarios
+In default configuration we print those audits to the console every 10 seconds. You can reset
+your stopwatches or quantities for the new interval by shouldReset method.
+```java
+  stopwatch.shouldReset(true);
+```
+Moreover, one may want to monitor what is the value of something for every interval. It can
+be accomplished by giving a provider to the quantity as follows.
+```java
+  doubleQuantity.setProvider(new AuditProvider() {
+    public void updateAudit(){
+      doubleQuantity.set(Math.random());
+    }
+  });
+```
