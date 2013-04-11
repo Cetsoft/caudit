@@ -8,6 +8,7 @@ are variables that you want to monitor. Let's make it more understanding with ex
 ###Simple Stopwatch Example
 In this example, we try to monitor how much time it takes to run doSomeWork() method. 
 ```java
+  //Mapping audit to integer is for performance(string comparison vs integer comparison)
   private final static int BASIC_STOPWATCH_ID = Audits.mapAudit("example.basicStopwatch");
   
   public void tryOut(){
