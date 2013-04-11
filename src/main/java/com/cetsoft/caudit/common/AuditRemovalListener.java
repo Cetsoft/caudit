@@ -40,5 +40,5 @@ public interface AuditRemovalListener {
 	 *
 	 * @param auditEvent the audit event
 	 */
-	void onRemovalAuditEvent(AuditEvent auditEvent);
+	void onRemoval(AuditEvent auditEvent);
 }

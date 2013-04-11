@@ -108,7 +108,7 @@ public class AuditStore {
 			AuditRemovalListener removalListener = audit.getRemovalListener();
 			if(removalListener!=null){
 				AuditEvent auditEvent = audit.createEvent();
-				removalListener.onRemovalAuditEvent(auditEvent);
+				removalListener.onRemoval(auditEvent);
 			}
 			auditMap.remove(audit.getAuditId());
 		}finally{
