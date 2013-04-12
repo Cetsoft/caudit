@@ -105,6 +105,7 @@ done by AuditRemovalListener. We can set shouldReset to false in order to avoid 
   public void startEvent(){
     Stopwatch stopwatch = Audits.getBasicStopwatch(EVENT_ID);
     stopwatch.setShouldReset(false);
+    stopwatch.setObservable(false);// By setting observable to false will prevent it from being observed.
     stopwatch.setRemovalListener(new AuditRemovalListener() {
   		public void onRemoval(AuditEvent auditEvent) {
 				System.out.println(auditEvent);
