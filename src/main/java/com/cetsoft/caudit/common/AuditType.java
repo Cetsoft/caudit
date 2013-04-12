@@ -31,9 +31,6 @@ public enum AuditType {
 	/** The counting stopwatch. */
 	COUNTING_STOPWATCH,
 	
-	/** The accumulating stopwatch. */
-	ACCUMULATING_STOPWATCH,
-	
 	/** The long quantity. */
 	LONG_QUANTITY,
 	

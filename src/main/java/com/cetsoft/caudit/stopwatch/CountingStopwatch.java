@@ -30,13 +30,13 @@ import com.cetsoft.caudit.observable.AuditEvent;
 public class CountingStopwatch extends Stopwatch{
 
 	/** The count. */
-	AtomicLong count = new AtomicLong();
+	volatile AtomicLong count = new AtomicLong();
 	
 	/** The start count. */
-	AtomicLong startCount = new AtomicLong();
+	long startCount = 0;
 	
 	/** The stop count. */
-	AtomicLong stopCount = new AtomicLong();
+	long stopCount;
 	
 	/**
 	 * Instantiates a new counting stopwatch.
@@ -55,7 +55,7 @@ public class CountingStopwatch extends Stopwatch{
 	 */
 	public void start(long startCount){
 		super.start();
-		this.startCount.set(startCount);
+		this.startCount = startCount;
 	}
 	
 	/**
@@ -65,8 +65,7 @@ public class CountingStopwatch extends Stopwatch{
 	 */
 	public void stop(long stopCount){
 		super.stop();
-		this.stopCount.set(stopCount);
-		this.count.set(this.stopCount.get()-this.startCount.get());
+		this.count.addAndGet(stopCount-startCount);
 	}
 	
 	/**

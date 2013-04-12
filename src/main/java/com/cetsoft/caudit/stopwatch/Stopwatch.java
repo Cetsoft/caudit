@@ -31,7 +31,9 @@ import com.cetsoft.caudit.observable.AuditEvent;
 public class Stopwatch extends AbstractAudit {
 
 	/** The elapsed time in millis. */
-	AtomicLong elapsedTimeInMillis = new AtomicLong(0);
+	volatile AtomicLong elapsedTimeInMillis = new AtomicLong(0);
+	
+	long startTime = 0;
 
 	/**
 	 * Instantiates a new stopwatch.
@@ -47,15 +49,15 @@ public class Stopwatch extends AbstractAudit {
 	 * Start.
 	 */
 	public void start() {
-		elapsedTimeInMillis.set(System.currentTimeMillis());
+		startTime = System.currentTimeMillis();
 	}
 
 	/**
 	 * Stop.
 	 */
 	public void stop() {
-		long delta = System.currentTimeMillis() - elapsedTimeInMillis.get();
-		elapsedTimeInMillis.set(delta);
+		long delta = System.currentTimeMillis() - startTime;
+		elapsedTimeInMillis.addAndGet(delta);
 	}
 
 	/**

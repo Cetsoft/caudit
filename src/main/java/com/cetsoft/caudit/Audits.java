@@ -29,7 +29,6 @@ import com.cetsoft.caudit.common.AuditType;
 import com.cetsoft.caudit.loader.AuditContextLoader;
 import com.cetsoft.caudit.quantity.DoubleQuantity;
 import com.cetsoft.caudit.quantity.LongQuantity;
-import com.cetsoft.caudit.stopwatch.AccumulatingStopwatch;
 import com.cetsoft.caudit.stopwatch.CountingStopwatch;
 import com.cetsoft.caudit.stopwatch.Stopwatch;
 
@@ -171,16 +170,6 @@ public class Audits {
 	}
 
 	/**
-	 * Gets the accumulating stopwatch.
-	 *
-	 * @param accumulatingStopwatchId the accumulating stopwatch id
-	 * @return the accumulating stopwatch
-	 */
-	public static AccumulatingStopwatch getAccumulatingStopwatch(int accumulatingStopwatchId) {
-		return auditStore.get(accumulatingStopwatchId, AuditType.ACCUMULATING_STOPWATCH);
-	}
-
-	/**
 	 * Gets the long quantity.
 	 *
 	 * @param longQuantityId the long quantity id
@@ -215,8 +204,6 @@ public class Audits {
 				return new Stopwatch(auditId, auditName);
 			case COUNTING_STOPWATCH:
 				return new CountingStopwatch(auditId, auditName);
-			case ACCUMULATING_STOPWATCH:
-				return new AccumulatingStopwatch(auditId, auditName);
 			case LONG_QUANTITY:
 				return new LongQuantity(auditId, auditName);
 			case DOUBLE_QUANTITY:

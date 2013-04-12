@@ -1,9 +1,10 @@
 package com.cetsoft.caudit;
 
 import com.cetsoft.caudit.common.AuditProvider;
+import com.cetsoft.caudit.common.AuditRemovalListener;
+import com.cetsoft.caudit.observable.AuditEvent;
 import com.cetsoft.caudit.quantity.DoubleQuantity;
 import com.cetsoft.caudit.quantity.LongQuantity;
-import com.cetsoft.caudit.stopwatch.AccumulatingStopwatch;
 import com.cetsoft.caudit.stopwatch.CountingStopwatch;
 import com.cetsoft.caudit.stopwatch.Stopwatch;
 
@@ -14,9 +15,6 @@ public class ExampleAudit {
 
 	/** The Constant BASIC_STOPWATCH_ID. */
 	private final static int BASIC_STOPWATCH_ID = Audits.mapAudit("main.basicStopwatch");
-	
-	/** The Constant ACCUMULATING_STOPWATCH_ID. */
-	private final static int ACCUMULATING_STOPWATCH_ID = Audits.mapAudit("main.accumulatingStopwatch");
 	
 	/** The Constant COUNTING_STOPWATCH_ID. */
 	private final static int COUNTING_STOPWATCH_ID = Audits.mapAudit("main.countingStopwatch");
@@ -35,18 +33,22 @@ public class ExampleAudit {
 	 */
 	public static void main(String[] args) throws InterruptedException {
 		final Stopwatch stopwatch = Audits.getBasicStopwatch(BASIC_STOPWATCH_ID);
-		final AccumulatingStopwatch accumulatingStopwatch = Audits.getAccumulatingStopwatch(ACCUMULATING_STOPWATCH_ID);
+		stopwatch.setShouldReset(false);
+		stopwatch.setRemovalListener(new AuditRemovalListener() {
+			public void onRemoval(AuditEvent auditEvent) {
+				System.out.println(auditEvent);
+			}
+		});
+		Audits.unmapAudit(stopwatch);
 		new Thread(new Runnable() {
 			public void run() {
 				while (true) {
 					stopwatch.start();
-					accumulatingStopwatch.start();
 					try {
 						Thread.sleep((long) (Math.random() * 100));
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					accumulatingStopwatch.stop();
 					stopwatch.stop();
 				}
 			}
@@ -56,7 +58,6 @@ public class ExampleAudit {
 				while (true) {
 					CountingStopwatch stopwatch = Audits.getCountingStopwatch(COUNTING_STOPWATCH_ID);
 					stopwatch.start(0);
-					accumulatingStopwatch.start();
 					try {
 						Thread.sleep((long) (Math.random() * 100));
 					} catch (InterruptedException e) {
@@ -66,7 +67,6 @@ public class ExampleAudit {
 				}
 			}
 		}).start();
-		accumulatingStopwatch.setShouldReset(true);
 		new Thread(new Runnable() {
 			public void run() {
 				while (true) {
