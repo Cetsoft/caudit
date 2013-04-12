@@ -31,7 +31,7 @@ import com.cetsoft.caudit.observable.AuditEvent;
 public class DoubleQuantity extends Quantity {
 
 	/** The atomic double. */
-	double atomicDouble = 0;
+	volatile double atomicDouble = 0;
 	
 	/** The should reset. */
 	boolean shouldReset = true;

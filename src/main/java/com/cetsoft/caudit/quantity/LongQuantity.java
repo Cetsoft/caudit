@@ -30,7 +30,7 @@ import com.cetsoft.caudit.observable.AuditEvent;
 public class LongQuantity extends Quantity {
 
 	/** The atomic long. */
-	AtomicLong atomicLong = new AtomicLong();
+	volatile AtomicLong atomicLong = new AtomicLong();
 	
 	/**
 	 * Instantiates a new long quantity.
