@@ -53,20 +53,22 @@ public class ExampleAudit {
 				}
 			}
 		}).start();
-		new Thread(new Runnable() {
-			public void run() {
-				while (true) {
-					CountingStopwatch stopwatch = Audits.getCountingStopwatch(COUNTING_STOPWATCH_ID);
-					stopwatch.start(0);
-					try {
-						Thread.sleep((long) (Math.random() * 100));
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+		for (int i=0;i<10;i++) {
+			new Thread(new Runnable() {
+				public void run() {
+					while (true) {
+						CountingStopwatch stopwatch = Audits.getCountingStopwatch(COUNTING_STOPWATCH_ID);
+						stopwatch.start();
+						try {
+							Thread.sleep((long) (Math.random() * 100));
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						stopwatch.stop(23);
 					}
-					stopwatch.stop(23);
 				}
-			}
-		}).start();
+			}).start();
+		}
 		new Thread(new Runnable() {
 			public void run() {
 				while (true) {
