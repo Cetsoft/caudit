@@ -66,14 +66,30 @@ In this example, we try to monitor specific events that have many attributes.
 If we use default configuration we will see an output on the console as follows.
 > example.totalChanges : width[3] length[5] number[11]
 
+###Default Audits
+If you want to know how much memory you consume or how much threads you run, you can use default
+functions of caudit as follows.
+```java
+  public void tryOut(){
+     Audits.monitorUsedMemoryInMB();
+     Audits.monitorNumberOfThreads();
+  }
+```
+If we use default configuration we will see an output on the console as follows.
+> USED_MEMORY_IN_MB : Quantity[3]
+
+>NO_OF_THREADS : Quantity[5]
+
 ##Specific Scenarios
-In default configuration we print those audits to the console every 10 seconds. You can reset
+* In default configuration we print those audits to the console every 10 seconds. You can reset
 your stopwatches or quantities for the new interval by shouldReset method.
+
 ```java
   stopwatch.shouldReset(true);
 ```
-Moreover, one may want to monitor what is the value of something for every interval. It can
+* Moreover, one may want to monitor what is the value of something for every interval. It can
 be accomplished by giving a provider to the quantity as follows.
+
 ```java
   doubleQuantity.setProvider(new AuditProvider() {
     public void updateAudit(){
@@ -81,8 +97,9 @@ be accomplished by giving a provider to the quantity as follows.
     }
   });
 ```
-Sometimes, you may want to measure time for one event and remove it after measurement, this can
+* Sometimes, you may want to measure time for one event and remove it after measurement, this can
 done by AuditRemovalListener. We can set shouldReset to false in order to avoid from resetting it.
+
 ```java
   private final static int EVENT_ID = Audits.mapAudit("example.event");
   public void startEvent(){
