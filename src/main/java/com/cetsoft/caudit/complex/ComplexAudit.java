@@ -20,9 +20,9 @@
 */
 package com.cetsoft.caudit.complex;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.cetsoft.caudit.common.AbstractAudit;
 import com.cetsoft.caudit.observable.AuditEvent;
@@ -33,7 +33,7 @@ import com.cetsoft.caudit.observable.AuditEvent;
 public class ComplexAudit extends AbstractAudit{
 
 	/** The map. */
-	Map<Object,Object> map = new HashMap<Object, Object>();
+	volatile Map<Object,Object> map = new ConcurrentHashMap<Object, Object>();
 	
 	/**
 	 * Instantiates a new complex audit.
