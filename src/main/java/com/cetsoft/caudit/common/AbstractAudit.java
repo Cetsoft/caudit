@@ -27,7 +27,7 @@ package com.cetsoft.caudit.common;
 public abstract class AbstractAudit implements Audit{
 
 	/** The audit id. */
-	int auditId;
+	volatile int auditId;
 	
 	/** The should reset. */
 	volatile boolean shouldReset = true;
@@ -36,10 +36,10 @@ public abstract class AbstractAudit implements Audit{
 	volatile boolean isObservable = true;
 	
 	/** The audit name. */
-	protected String auditName;
+	protected volatile String auditName;
 	
 	/** The provider. */
-	protected AuditProvider provider;
+	protected volatile AuditProvider provider;
 	
 	/** The removal listener. */
 	protected AuditRemovalListener removalListener;

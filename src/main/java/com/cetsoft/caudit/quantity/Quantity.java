@@ -29,7 +29,7 @@ import com.cetsoft.caudit.common.AbstractAudit;
 public abstract class Quantity extends AbstractAudit{
 
 	/** The unit. */
-	private String unit;
+	private volatile String unit;
 	
 	/**
 	 * Instantiates a new quantity.
