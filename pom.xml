@@ -3,7 +3,24 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.cetsoft.caudit</groupId>
 	<artifactId>caudit</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
+	<name>Caudit</name>
+	<description>Caudit is a simple library to log application performance, health and statistics in an organized manner.</description>
+	<properties>
+	    <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
+	</properties>
+	<licenses>
+		<license>
+			<name>GNU GENERAL PUBLIC LICENSE</name>
+			<url>http://opensource.org/licenses/GPL-3.0</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+	<scm>
+		<url>http://github.com/Cetsoft/caudit/</url>
+		<connection>http://github.com/Cetsoft/caudit.git</connection>
+	</scm>
 	<developers>
 		<developer>
 			<name>Yusuf Aytas</name>
@@ -17,4 +34,32 @@
 			</roles>
 		</developer>
 	</developers>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
