@@ -1,23 +1,23 @@
 /*
- * Copyright (C) 2013 Cetsoft, http://www.cetsoft.com
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the Free
- * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- * 
- * Author : Yusuf Aytas
- * Date   : Apr 11, 2013
- */
+* Copyright (C) 2013 Cetsoft, http://www.cetsoft.com
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Library General Public
+* License as published by the Free Software Foundation; either
+* version 2 of the License, or (at your option) any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+* Library General Public License for more details.
+*
+* You should have received a copy of the GNU Library General Public
+* License along with this library; if not, write to the Free
+* Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+* 
+* Author : Yusuf Aytas
+* Date   : May 28, 2013
+*/
 package com.cetsoft.caudit.loader;
 
 import java.io.BufferedInputStream;
@@ -78,7 +78,7 @@ public class AuditContextLoader {
 			if (fileName == null) {
 				loadConfigurationFromClasspath();
 			} else {
-				loadConfigurationFromFile();
+				loadConfigurationFromFile(fileName);
 			}
 		} catch (Exception exception) {
 			System.err.println("An exception occured while loading configuration file.");
@@ -112,13 +112,15 @@ public class AuditContextLoader {
 
 	/**
 	 * Load configuration from file.
-	 * 
+	 *
+	 * @param fileName the file name
 	 * @throws ParserConfigurationException the parser configuration exception
 	 * @throws SAXException the sAX exception
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	protected void loadConfigurationFromFile() throws ParserConfigurationException, SAXException, IOException {
-
+	protected void loadConfigurationFromFile(String fileName) throws ParserConfigurationException, SAXException, IOException {
+		final InputStream inputStream = this.getClass().getResourceAsStream(fileName);
+		loadFromXmlDocument(inputStream);
 	}
 
 	/**
