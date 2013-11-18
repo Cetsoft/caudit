@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.cetsoft</groupId>
 	<artifactId>caudit</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>Caudit</name>
 	<description>Caudit is a simple library to log application performance, health and statistics in an organized manner.</description>
 	<properties>
@@ -20,7 +20,7 @@
 		<connection>scm:git:git@github.com:Cetsoft/caudit.git</connection>
 		<developerConnection>scm:git:git@github.com:Cetsoft/caudit.git</developerConnection>
 		<url>https://github.com/Cetsoft/caudit</url>
-	  <tag>caudit-0.0.2</tag>
+	  <tag>caudit-0.0.1</tag>
   </scm>
 	<developers>
 		<developer>
