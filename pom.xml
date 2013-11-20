@@ -10,6 +10,7 @@
 	<url>http://github.com/Cetsoft/caudit</url>
 	<modules>
 		<module>caudit</module>
+		<module>caudit-observers</module>
 	</modules>
 	<properties>
 		<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
