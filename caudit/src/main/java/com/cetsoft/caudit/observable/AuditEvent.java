@@ -74,5 +74,24 @@ public class AuditEvent {
 			return "";
 		}
 	}
+	
+	public String toJSON(){
+		if (auditName != null) {
+			StringBuilder builder = new StringBuilder();
+			builder.append("{");
+			builder.append("auditName:");
+			builder.append(auditName);
+			for (Entry<Object, Object> entry : map.entrySet()) {
+				builder.append(",");
+				builder.append(entry.getKey());
+				builder.append(":");
+				builder.append(entry.getValue());
+			}
+			builder.append("}");
+			return builder.toString();
+		} else {
+			return "";
+		}
+	}
 
 }
