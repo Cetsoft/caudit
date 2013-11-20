@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.cetsoft</groupId>
 		<artifactId>caudit-parent</artifactId>
-		<version>0.0.5</version>
+		<version>0.0.5-SNAPSHOT</version>
 	</parent>
 	<dependencies>
 		<dependency>
