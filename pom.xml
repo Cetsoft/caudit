@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.cetsoft</groupId>
 	<artifactId>caudit-parent</artifactId>
-	<version>0.0.7-SNAPSHOT</version>
+	<version>0.0.7</version>
 	<packaging>pom</packaging>
 	<name>Caudit-Parent</name>
 	<description>Caudit is a simple library to log application performance, health and statistics in an organized manner.</description>
@@ -26,7 +26,7 @@
 		<connection>scm:git:git@github.com:Cetsoft/caudit.git</connection>
 		<developerConnection>scm:git:git@github.com:Cetsoft/caudit.git</developerConnection>
 		<url>https://github.com/Cetsoft/caudit</url>
-		<tag>caudit-parent-0.0.5</tag>
+		<tag>caudit-parent-0.0.7</tag>
 	</scm>
 	<developers>
 		<developer>
