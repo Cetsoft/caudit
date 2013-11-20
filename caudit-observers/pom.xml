@@ -24,4 +24,5 @@
 			<version>[1.7,)</version>
 		</dependency>
 	</dependencies>
+	<name>Caudit Observers</name>
 </project>
