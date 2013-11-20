@@ -1,10 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.cetsoft</groupId>
-	<artifactId>caudit</artifactId>
+	<artifactId>caudit-parent</artifactId>
 	<version>0.0.3-SNAPSHOT</version>
-	<name>Caudit</name>
+	<packaging>pom</packaging>
+	<name>Caudit-Parent</name>
 	<description>Caudit is a simple library to log application performance, health and statistics in an organized manner.</description>
+	<url>http://github.com/Cetsoft/caudit</url>
+	<modules>
+		<module>caudit</module>
+	</modules>
 	<properties>
 		<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
 	</properties>
@@ -20,8 +26,8 @@
 		<connection>scm:git:git@github.com:Cetsoft/caudit.git</connection>
 		<developerConnection>scm:git:git@github.com:Cetsoft/caudit.git</developerConnection>
 		<url>https://github.com/Cetsoft/caudit</url>
-	  <tag>caudit-0.0.1</tag>
-  </scm>
+		<tag>caudit-0.0.1</tag>
+	</scm>
 	<developers>
 		<developer>
 			<name>Yusuf Aytas</name>
