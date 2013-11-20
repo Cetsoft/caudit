@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 	<name>Caudit-Parent</name>
 	<description>Caudit is a simple library to log application performance, health and statistics in an organized manner.</description>
-	<url>http://github.com/Cetsoft/caudit</url>
+	<url>https://github.com/Cetsoft/caudit</url>
 	<modules>
 		<module>caudit</module>
 		<module>caudit-observers</module>
