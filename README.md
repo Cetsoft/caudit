@@ -21,6 +21,14 @@ In this example, we try to monitor how much time it takes to run doSomeWork() me
 If we use default configuration we will see an output on the console as follows.
 > example.basicStopwatch : ElapsedTime[5679]
 
+###Pom Dependency
+```xml
+<dependency>
+  <groupId>com.cetsoft</groupId>
+  <artifactId>caudit</artifactId>
+  <version>0.0.7</version><!--You can update your version-->
+</dependency>
+```
 ###Simple Quantity Example
 In this example, we try to monitor how many items we retrieve from database. 
 ```java
