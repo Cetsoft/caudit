@@ -26,7 +26,7 @@ If we use default configuration we will see an output on the console as follows.
 <dependency>
   <groupId>com.cetsoft</groupId>
   <artifactId>caudit</artifactId>
-  <version>0.0.7</version><!--You can update your version-->
+  <version>0.0.7</version><!--Can be updated for later versions-->
 </dependency>
 ```
 ###Simple Quantity Example
