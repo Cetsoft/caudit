@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<caudit>
-	<period>1000</period>
-	<observers>
-		<observer class="com.cetsoft.caudit.observer.ConsoleObserver" />
-	</observers>
-</caudit>
+<note xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="caudit.xsd">
+	<caudit>
+		<period>1000</period>
+		<observers>
+			<observer class="com.cetsoft.caudit.observer.ConsoleObserver" />
+		</observers>
+	</caudit>
+</note>

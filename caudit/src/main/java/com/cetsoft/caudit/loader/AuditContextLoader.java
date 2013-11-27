@@ -53,7 +53,7 @@ public class AuditContextLoader {
 
 	/** The observer tag. */
 	private final String OBSERVER_TAG = "observer";
-
+	
 	/** The period tag. */
 	private final String PERIOD_TAG = "period";
 	
@@ -183,7 +183,14 @@ public class AuditContextLoader {
 	protected AuditObserver createObserver(Node node) {
 		String classz = node.getAttributes().getNamedItem("class").getNodeValue();
 		try {
-			AuditObserver auditObserver = (AuditObserver) ObjectInstanceCreater.createObject(classz, new Object[] {});
+			List<String> argList = new ArrayList<String>(3);
+			for (int i=0; i<node.getChildNodes().getLength();i++) {
+				Node childNode = node.getChildNodes().item(i);
+				if(childNode.getNodeType() == Node.ELEMENT_NODE){
+					argList.add(node.getChildNodes().item(i).getNodeValue());
+				}
+			}
+			AuditObserver auditObserver = (AuditObserver) ObjectInstanceCreater.createObject(classz, argList.toArray());
 			return auditObserver;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
