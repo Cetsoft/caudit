@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.cetsoft.com/caudit"
+	xmlns:tns="http://www.cetsoft.com/caudit" elementFormDefault="qualified">
+
+    <complexType name="caudit">
+    	<sequence>
+    		<element name="period" type="int"></element>
+    		<element name="observers" type="tns:observers" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="observers">
+    	<sequence>
+    		<element name="observer" type="tns:observer" maxOccurs="unbounded" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="observer">
+    	<sequence>
+    		<element name="arg" type="tns:arg" maxOccurs="unbounded"
+    			minOccurs="0">
+    		</element>
+    	</sequence>
+    	<attribute name="class" type="string"></attribute>
+    </complexType>
+
+    <complexType name="arg">
+    	<attribute name="name" type="string"></attribute>
+    </complexType>
+
+</schema>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<caudit>
+	<period>1000</period>
+	<observers>
+		<observer class="com.cetsoft.caudit.observer.ConsoleObserver" />
+		<observer class="com.cetsoft.caudit.observers.TryOutObserver">
+			<arg>elma</arg>
+			<arg>armut</arg>
+		</observer>
+	</observers>
+</caudit>
