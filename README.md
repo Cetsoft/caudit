@@ -129,16 +129,22 @@ public void stopEvent(){
 ```
 ###Configuration
 Caudit configuration is simple, you just give period of caudit and observers for audit events.
-Here is an example configuration. 
+Here is an example configuration. I would strongly recommend to use caudit-observers package additionally because it provides logging with log4j and mongodb. It's as simple as follows.
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <caudit>
   <period>1000</period>
     <observers>
       <observer class="com.cetsoft.caudit.observer.ConsoleObserver" />
+      <observer class="com.cetsoft.caudit.observers.Log4JObserver" />
+      <observer class="com.cetsoft.caudit.observers.MongoObserver">
+        <connection-string>some-url</connection-string>
+        <dbname>mydb</dbname>
+        <port>27017</port>
+      </observer>
       <!-- MyObserver is just an example -->
-      <observer class="com.cetsoft.caudit.observer.MyObserver" />
-	</observers>
+      <observer class="com.cetsoft.caudit.observer.YourCustomObserver" />
+    </observers>
 </caudit>
 ```
 Caudit tries to find caudit.xml in classpath or you can give
