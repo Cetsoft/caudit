@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Caudit : Caudit is a simple library to log application performance related events.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Caudit</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Cetsoft/caudit">View on GitHub</a>
+
+          <h1 id="project_title">Caudit</h1>
+          <h2 id="project_tagline">Caudit is a simple library to log application performance related events.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Cetsoft/caudit/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Cetsoft/caudit/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="caudit" class="anchor" href="#caudit"><span class="octicon octicon-link"></span></a>CAUDIT</h1>
+
+<p>Caudit is a simple library to log application performance, health and statistics in an 
+organized manner. It has two basic audit types: stopwatches and quantities. Stopwatches
+are the ones which you keep track of the time passed for a specific operation. Quantities 
+are variables that you want to monitor. Let's make it more understanding with examples.</p>
+
+<h3>
+<a name="simple-stopwatch-example" class="anchor" href="#simple-stopwatch-example"><span class="octicon octicon-link"></span></a>Simple Stopwatch Example</h3>
+
+<p>In this example, we try to monitor how much time it takes to run doSomeWork() method. </p>
+
+<div class="highlight highlight-java"><pre><span class="c1">//Mapping audit to integer is for performance(string comparison vs integer comparison)</span>
+<span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">BASIC_STOPWATCH_ID</span> <span class="o">=</span> <span class="n">Audits</span><span class="o">.</span><span class="na">mapAudit</span><span class="o">(</span><span class="s">"example.basicStopwatch"</span><span class="o">);</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">tryOut</span><span class="o">(){</span>
+  <span class="kd">final</span> <span class="n">Stopwatch</span> <span class="n">stopwatch</span> <span class="o">=</span> <span class="n">Audits</span><span class="o">.</span><span class="na">getBasicStopwatch</span><span class="o">(</span><span class="n">BASIC_STOPWATCH_ID</span><span class="o">);</span>
+  <span class="n">stopwatch</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+  <span class="n">doSomeWork</span><span class="o">();</span>
+  <span class="n">stopwatch</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>If we use default configuration we will see an output on the console as follows.</p>
+
+<blockquote>
+<p>example.basicStopwatch : ElapsedTime[5679]</p>
+</blockquote>
+
+<h3>
+<a name="pom-dependency" class="anchor" href="#pom-dependency"><span class="octicon octicon-link"></span></a>Pom Dependency</h3>
+
+<div class="highlight highlight-xml"><pre><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.cetsoft<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>caudit<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.0.7<span class="nt">&lt;/version&gt;</span><span class="c">&lt;!--Can be updated for later versions--&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+
+<h3>
+<a name="simple-quantity-example" class="anchor" href="#simple-quantity-example"><span class="octicon octicon-link"></span></a>Simple Quantity Example</h3>
+
+<p>In this example, we try to monitor how many items we retrieve from database. </p>
+
+<div class="highlight highlight-java"><pre><span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">NO_OF_RETRIEVED_ITEMS_ID</span> <span class="o">=</span> <span class="n">Audits</span><span class="o">.</span><span class="na">mapAudit</span><span class="o">(</span><span class="s">"example.noOfRetrievedItems"</span><span class="o">);</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">tryOut</span><span class="o">(){</span>
+  <span class="kd">final</span> <span class="n">LongQuantity</span> <span class="n">quantity</span> <span class="o">=</span> <span class="n">Audits</span><span class="o">.</span><span class="na">getLongQuantity</span><span class="o">(</span><span class="n">NO_OF_RETRIEVED_ITEMS_ID</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">retrieveItems</span><span class="o">().</span><span class="na">size</span><span class="o">();</span>
+  <span class="n">quantity</span><span class="o">.</span><span class="na">increment</span><span class="o">(</span><span class="n">size</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>If we use default configuration we will see an output on the console as follows.</p>
+
+<blockquote>
+<p>example.noOfRetrievedItems : Quantity[2631]</p>
+</blockquote>
+
+<h3>
+<a name="counting-stopwatch-example" class="anchor" href="#counting-stopwatch-example"><span class="octicon octicon-link"></span></a>Counting Stopwatch Example</h3>
+
+<p>In this example, we try to monitor how much time it takes to do specific number of operations. </p>
+
+<div class="highlight highlight-java"><pre><span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">COUNTING_STOPWATCH_ID</span> <span class="o">=</span> <span class="n">Audits</span><span class="o">.</span><span class="na">mapAudit</span><span class="o">(</span><span class="s">"example.countingStopwatch"</span><span class="o">);</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">tryOut</span><span class="o">(){</span>
+  <span class="kd">final</span> <span class="n">CountingStopwatch</span> <span class="n">stopwatch</span> <span class="o">=</span> <span class="n">Audits</span><span class="o">.</span><span class="na">getCountingStopwatch</span><span class="o">(</span><span class="n">COUNTING_STOPWATCH_ID</span><span class="o">);</span>
+  <span class="n">stopwatch</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">doSomeWork</span><span class="o">();</span>
+  <span class="n">stopwatch</span><span class="o">.</span><span class="na">stop</span><span class="o">(</span><span class="n">size</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>If we use default configuration we will see an output on the console as follows.</p>
+
+<blockquote>
+<p>example.countingStopwatch : Count[23] ElapsedTime[5679]</p>
+</blockquote>
+
+<p>AuditProvider is called for each time interval. Thus, we can see updated output on the console.</p>
+
+<h3>
+<a name="complex-audit-example" class="anchor" href="#complex-audit-example"><span class="octicon octicon-link"></span></a>Complex Audit Example</h3>
+
+<p>In this example, we try to monitor specific events that have many attributes.</p>
+
+<div class="highlight highlight-java"><pre><span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">TOTAL_CHANGES_ID</span> <span class="o">=</span> <span class="n">Audits</span><span class="o">.</span><span class="na">mapAudit</span><span class="o">(</span><span class="s">"example.totalChanges"</span><span class="o">);</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">tryOut</span><span class="o">(){</span>
+  <span class="kd">final</span> <span class="n">ComplexAudit</span> <span class="n">audit</span> <span class="o">=</span> <span class="n">Audits</span><span class="o">.</span><span class="na">getComplexAudit</span><span class="o">(</span><span class="n">TOTAL_CHANGES_ID</span><span class="o">);</span>
+  <span class="n">audit</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"width"</span><span class="o">,</span><span class="mi">3</span><span class="o">);</span>
+  <span class="n">audit</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"length"</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>
+  <span class="n">audit</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"number"</span><span class="o">,</span><span class="mi">11</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>If we use default configuration we will see an output on the console as follows.</p>
+
+<blockquote>
+<p>example.totalChanges : width[3] length[5] number[11]</p>
+</blockquote>
+
+<h3>
+<a name="default-audits" class="anchor" href="#default-audits"><span class="octicon octicon-link"></span></a>Default Audits</h3>
+
+<p>If you want to know how much memory you consume or how much threads you run, you can use default
+functions of caudit as follows.</p>
+
+<div class="highlight highlight-java"><pre><span class="kd">public</span> <span class="kt">void</span> <span class="nf">tryOut</span><span class="o">(){</span>
+   <span class="n">Audits</span><span class="o">.</span><span class="na">monitorUsedMemoryInMB</span><span class="o">();</span>
+   <span class="n">Audits</span><span class="o">.</span><span class="na">monitorNumberOfThreads</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>If we use default configuration we will see an output on the console as follows.</p>
+
+<blockquote>
+<p>USED_MEMORY_IN_MB : Quantity[3]</p>
+
+<p>NO_OF_THREADS : Quantity[5]</p>
+</blockquote>
+
+<h2>
+<a name="specific-scenarios" class="anchor" href="#specific-scenarios"><span class="octicon octicon-link"></span></a>Specific Scenarios</h2>
+
+<ul>
+<li>In default configuration we print those audits to the console every 10 seconds. You can reset
+your stopwatches or quantities for the new interval by shouldReset method.</li>
+</ul><div class="highlight highlight-java"><pre><span class="n">stopwatch</span><span class="o">.</span><span class="na">shouldReset</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</pre></div>
+
+<ul>
+<li>Moreover, one may want to monitor what is the value of something for every interval. It can
+be accomplished by giving a provider to the quantity as follows.</li>
+</ul><div class="highlight highlight-java"><pre><span class="n">doubleQuantity</span><span class="o">.</span><span class="na">setProvider</span><span class="o">(</span><span class="k">new</span> <span class="nf">AuditProvider</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateAudit</span><span class="o">(){</span>
+    <span class="n">doubleQuantity</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">());</span>
+  <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
+
+<ul>
+<li>Sometimes, you may want to measure time for one event and remove it after measurement, this can
+done by AuditRemovalListener. We can set shouldReset to false in order to avoid from resetting it.</li>
+</ul><div class="highlight highlight-java"><pre><span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">EVENT_ID</span> <span class="o">=</span> <span class="n">Audits</span><span class="o">.</span><span class="na">mapAudit</span><span class="o">(</span><span class="s">"example.event"</span><span class="o">);</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">startEvent</span><span class="o">(){</span>
+  <span class="n">Stopwatch</span> <span class="n">stopwatch</span> <span class="o">=</span> <span class="n">Audits</span><span class="o">.</span><span class="na">getBasicStopwatch</span><span class="o">(</span><span class="n">EVENT_ID</span><span class="o">);</span>
+  <span class="n">stopwatch</span><span class="o">.</span><span class="na">setShouldReset</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+  <span class="n">stopwatch</span><span class="o">.</span><span class="na">setObservable</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span><span class="c1">// By setting observable to false will prevent it from being observed.</span>
+  <span class="n">stopwatch</span><span class="o">.</span><span class="na">setRemovalListener</span><span class="o">(</span><span class="k">new</span> <span class="nf">AuditRemovalListener</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onRemoval</span><span class="o">(</span><span class="n">AuditEvent</span> <span class="n">auditEvent</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">auditEvent</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">});</span>
+  <span class="n">stopwatch</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">stopEvent</span><span class="o">(){</span>
+  <span class="n">Stopwatch</span> <span class="n">stopwatch</span> <span class="o">=</span> <span class="n">Audits</span><span class="o">.</span><span class="na">getBasicStopwatch</span><span class="o">(</span><span class="n">EVENT_ID</span><span class="o">);</span>
+  <span class="n">stopwatch</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+  <span class="n">Audits</span><span class="o">.</span><span class="na">unmapAudit</span><span class="o">(</span><span class="n">stopwatch</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
+<h3>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h3>
+
+<p>Caudit configuration is simple, you just give period of caudit and observers for audit events.
+Here is an example configuration. I would strongly recommend to use caudit-observers package additionally because it provides logging with log4j and mongodb. It's as simple as follows.</p>
+
+<div class="highlight highlight-xml"><pre><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<span class="nt">&lt;caudit&gt;</span>
+  <span class="nt">&lt;period&gt;</span>1000<span class="nt">&lt;/period&gt;</span>
+    <span class="nt">&lt;observers&gt;</span>
+      <span class="nt">&lt;observer</span> <span class="na">class=</span><span class="s">"com.cetsoft.caudit.observer.ConsoleObserver"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;observer</span> <span class="na">class=</span><span class="s">"com.cetsoft.caudit.observers.Log4JObserver"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;observer</span> <span class="na">class=</span><span class="s">"com.cetsoft.caudit.observers.MongoObserver"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;connection-string&gt;</span>some-url<span class="nt">&lt;/connection-string&gt;</span>
+        <span class="nt">&lt;dbname&gt;</span>mydb<span class="nt">&lt;/dbname&gt;</span>
+        <span class="nt">&lt;port&gt;</span>27017<span class="nt">&lt;/port&gt;</span>
+      <span class="nt">&lt;/observer&gt;</span>
+      <span class="c">&lt;!-- MyObserver is just an example --&gt;</span>
+      <span class="nt">&lt;observer</span> <span class="na">class=</span><span class="s">"com.cetsoft.caudit.observer.YourCustomObserver"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/observers&gt;</span>
+<span class="nt">&lt;/caudit&gt;</span>
+</pre></div>
+
+<p>Caudit tries to find caudit.xml in classpath or you can give
+its path by -Dcaudit.configuration.filePath=yourpath, otherwise, it loads the default configuration.</p>
+
+<h3>
+<a name="licence" class="anchor" href="#licence"><span class="octicon octicon-link"></span></a>Licence</h3>
+
+<p>Caudit uses GNU Licence.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Caudit maintained by <a href="https://github.com/Cetsoft">Cetsoft</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
