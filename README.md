@@ -5,6 +5,8 @@ Caudit is a simple library to log application performance, health and statistics
 organized manner. It has two basic audit types: stopwatches and quantities. Stopwatches
 are the ones which you keep track of the time passed for a specific operation. Quantities 
 are variables that you want to monitor. Let's make it more understanding with examples.
+
+<img src="http://www.cetsoft.com/wp-content/uploads/2016/09/caudit.png" width="50">
 ###Simple Stopwatch Example
 In this example, we try to monitor how much time it takes to run doSomeWork() method. 
 ```java
