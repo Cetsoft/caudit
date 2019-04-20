@@ -5,7 +5,7 @@ organized manner. It has two basic audit types: stopwatches and quantities. Stop
 are the ones which you keep track of the time passed for a specific operation. Quantities 
 are variables that you want to monitor. Let's make it more understanding with examples.
 
-###Simple Stopwatch Example
+### Simple Stopwatch Example
 In this example, we try to monitor how much time it takes to run doSomeWork() method. 
 ```java
 //Mapping audit to integer is for performance(string comparison vs integer comparison)
@@ -21,7 +21,7 @@ public void tryOut(){
 If we use default configuration we will see an output on the console as follows.
 > example.basicStopwatch : ElapsedTime[5679]
 
-###Pom Dependency
+### Pom Dependency
 ```xml
 <dependency>
   <groupId>com.cetsoft</groupId>
@@ -29,7 +29,7 @@ If we use default configuration we will see an output on the console as follows.
   <version>0.0.7</version><!--Can be updated for later versions-->
 </dependency>
 ```
-###Simple Quantity Example
+### Simple Quantity Example
 In this example, we try to monitor how many items we retrieve from database. 
 ```java
 private final static int NO_OF_RETRIEVED_ITEMS_ID = Audits.mapAudit("example.noOfRetrievedItems");
@@ -43,7 +43,7 @@ public void tryOut(){
 If we use default configuration we will see an output on the console as follows.
 > example.noOfRetrievedItems : Quantity[2631]
 
-###Counting Stopwatch Example
+### Counting Stopwatch Example
 In this example, we try to monitor how much time it takes to do specific number of operations. 
 ```java
 private final static int COUNTING_STOPWATCH_ID = Audits.mapAudit("example.countingStopwatch");
@@ -59,7 +59,7 @@ If we use default configuration we will see an output on the console as follows.
 > example.countingStopwatch : Count[23] ElapsedTime[5679]
 
 AuditProvider is called for each time interval. Thus, we can see updated output on the console.
-###Complex Audit Example
+### Complex Audit Example
 In this example, we try to monitor specific events that have many attributes.
 ```java
 private final static int TOTAL_CHANGES_ID = Audits.mapAudit("example.totalChanges");
@@ -74,7 +74,7 @@ public void tryOut(){
 If we use default configuration we will see an output on the console as follows.
 > example.totalChanges : width[3] length[5] number[11]
 
-###Default Audits
+### Default Audits
 If you want to know how much memory you consume or how much threads you run, you can use default
 functions of caudit as follows.
 ```java
@@ -88,7 +88,7 @@ If we use default configuration we will see an output on the console as follows.
 
 >NO_OF_THREADS : Quantity[5]
 
-##Specific Scenarios
+## Specific Scenarios
 * In default configuration we print those audits to the console every 10 seconds. You can reset
 your stopwatches or quantities for the new interval by shouldReset method.
 
@@ -127,7 +127,7 @@ public void stopEvent(){
   Audits.unmapAudit(stopwatch);
 }
 ```
-###Configuration
+### Configuration
 Caudit configuration is simple, you just give period of caudit and observers for audit events.
 Here is an example configuration. I would strongly recommend to use caudit-observers package additionally because it provides logging with log4j and mongodb. It's as simple as follows.
 ```xml
@@ -149,5 +149,5 @@ Here is an example configuration. I would strongly recommend to use caudit-obser
 ```
 Caudit tries to find caudit.xml in classpath or you can give
 its path by -Dcaudit.configuration.filePath=yourpath, otherwise, it loads the default configuration.
-###Licence
+### Licence
 Caudit uses GNU Licence.
